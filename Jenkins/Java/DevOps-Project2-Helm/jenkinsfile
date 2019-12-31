@@ -1,0 +1,91 @@
+pipeline {
+   agent any
+    environment { 
+        image = "websphere-liberty"
+        deploymentName= "liberty-webapp"
+        servicename= "${deploymentName}-service"
+        registry="docker.registery.10.10.10.10.nip.io"
+        port= "9080"
+        namespace= "mynamespaces"
+        helm = "liberty-app"
+
+    }
+   stages {       
+        stage('Build') {
+         steps {
+            node('master') {
+            // Get some code from a GitHub repository
+            git 'https://github.com/OktaySavdi/java-example.git'
+            
+            sh '/opt/maven/apache-maven-3.6.3/bin/mvn clean package'
+
+            // Run Maven on a Unix agent.
+            sh "/opt/maven/apache-maven-3.6.3/bin/mvn -Dmaven.test.failure.ignore=true clean package"
+
+            // To run Maven on a Windows agent, use
+            // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+         }
+      }
+      stage('Deliver') {
+            steps {
+               node('master') {
+                sh 'scp webapp/target/webapp.war root@10.10.10.10:/opt/app/'
+                sh 'scp Dockerfile root@10.10.10.10:/opt/app/'
+                sh 'scp server.xml root@10.10.10.10:/opt/app/'
+               }
+            }
+        }
+        
+      stage('Building image') {
+            steps {
+               node('docker') {
+                   script {
+                            withDockerRegistry([credentialsId: 'docker-private-host', url: "https://${registry}/"]) {
+                            sh '''
+                             docker build /opt/app/. -t ${image}:$BUILD_NUMBER
+                             docker tag ${image}:$BUILD_NUMBER ${registry}/${image}:$BUILD_NUMBER
+                             docker push ${registry}/${image}:$BUILD_NUMBER
+                            '''
+                            }
+                   }
+               }
+            }
+        }
+
+        stage('Remove image') {
+            steps {
+               node('docker') {
+                   script {
+                            withDockerRegistry([credentialsId: 'docker-private-host', url: "https://${registry}/"]) {
+                            sh '''
+                             docker rmi -f ${image}:$BUILD_NUMBER
+                             docker rmi -f ${registry}/${image}:$BUILD_NUMBER
+                            '''
+                            }
+                   }
+               }
+            }
+        }
+      
+      stage('Helm Deploy to k8s') {
+            steps {
+               node('docker') {
+                   script {
+                            sh '''
+                            if [ "$(kubectl get namespace | grep ${namespace} | wc -l)"  -lt 1 ]; then
+                                kubectl create namespace ${namespace}
+                            fi
+                            if [ "$(helm list | grep ${helm} | wc -l)" -gt 0 ]; then
+                                 helm uninstall ${helm}
+                                 helm install ${helm} /opt/helm/liberty-app/. --set image.repository=${registry}/${image} --set image.tag=$BUILD_NUMBER
+                            else
+                                helm install ${helm} /opt/helm/liberty-app/. --set image.repository=${registry}/${image} --set image.tag=$BUILD_NUMBER
+                            fi
+                            '''
+                   }
+               }
+            }
+        }      
+    }
+}

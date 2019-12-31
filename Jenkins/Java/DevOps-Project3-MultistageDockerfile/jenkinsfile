@@ -1,0 +1,74 @@
+pipeline {
+   agent any
+    environment { 
+        image = "websphere-liberty"
+        deploymentName= "liberty-webapp"
+        servicename= "${deploymentName}-service"
+        registry="docker.registery.10.10.10.10.nip.io"
+        port= "9080"
+        namespace= "mynamespaces"
+
+    }
+   stages {
+        stage('Build') {
+         steps {
+            node('docker') {
+            // Get some code from a GitHub repository
+            git 'https://github.com/OktaySavdi/java-example.git'
+            }
+         }
+      }
+      stage('Building image') {
+            steps {
+               node('docker') {
+                   script {
+                            withDockerRegistry([credentialsId: 'docker-private-host', url: "https://${registry}/"]) {
+                            sh '''
+                             docker build . -t ${registry}/${image}:$BUILD_NUMBER
+                             docker push ${registry}/${image}:$BUILD_NUMBER
+                            '''
+                            }
+                   }
+               }
+            }
+        }
+
+        stage('Remove image') {
+            steps {
+               node('docker') {
+                   script {
+                            withDockerRegistry([credentialsId: 'docker-private-host', url: "https://${registry}/"]) {
+                            sh '''
+                             docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+                             docker rmi -f ${registry}/${image}:$BUILD_NUMBER
+                            '''
+                            }
+                   }
+               }
+            }
+        }
+      
+      stage('Deploy to k8s') {
+            steps {
+               node('docker') {
+                   script {
+                            sh '''
+                            if [ "$(kubectl get namespace | grep ${namespace} | wc -l)"  -lt 1 ]; then
+                                kubectl create namespace ${namespace}
+                            fi
+                            if [ "$(kubectl get deployments.apps ${deploymentName} | wc -l)" -gt 0 ]; then
+                                kubectl delete deployments ${deploymentName} -n ${namespace} --grace-period=0 --force
+                                kubectl delete svc ${servicename} -n ${namespace} --grace-period=0 --force
+                                kubectl run ${deploymentName} --image=${registry}/${image}:$BUILD_NUMBER --labels="app=java,module=liberty" --port=${port} -n ${namespace}
+                                kubectl expose deployment ${deploymentName} --port=${port} --target-port=${port} --name=${servicename} --protocol='TCP' -n ${namespace}
+                            else
+                                kubectl run ${deploymentName} --image=${registry}/${image}:$BUILD_NUMBER --labels="app=java,module=liberty" --port=${port} -n ${namespace}
+                                kubectl expose deployment ${deploymentName} --port=${port} --target-port=${port} --name=${servicename} --protocol='TCP' -n ${namespace}
+                            fi
+                            '''
+                   }
+               }
+            }
+        }      
+    }
+}

@@ -1,0 +1,136 @@
+---
+- hosts: all
+  become: true 
+  vars: 
+    - image: "websphere-liberty"
+    - version: "1"
+    - registry: "docker.registery.10.10.10.10.nip.io"
+    - deploymentName: "liberty-webapp"
+    - servicename: "{{ deploymentName }}-service"
+    - port: "9080"
+    - namespace: "myspaces"
+  tasks:
+    - name: Build Docker image from Dockerfile
+      docker_image:
+        name: "{{ image }}:{{ version }}"
+        path: /opt/ansible/
+        state: build
+
+    - name: Tag and push to local registry
+      docker_image:
+        name: "{{ image }}"
+        repository: "{{ registry }}/{{ image }}:{{ version }}"
+        tag: "{{ version }}"
+        push: yes
+
+    - name: Remove image
+      docker_image:
+        state: absent
+        name: "{{ item }}"
+        tag: "{{ version }}"
+      with_items:
+        - "{{ image }}"
+        - "{{ registry }}/{{ image }}"
+
+    - name: Create Namespace for project
+      shell:
+        cmd: |
+          if [ "$(kubectl get namespace | grep {{ namespace }} | wc -l)"  -lt 1 ]; then
+            kubectl create namespace "{{ namespace }}"
+          fi
+    - name: Deploy image on k8s
+      shell:
+        cmd: |
+          if [ "$(kubectl get deployments.apps {{ deploymentName }} | wc -l)" -gt 0 ]; then
+          kubectl apply -f - <<EOF
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            labels:
+              app: java
+              module: liberty
+            name: {{ deploymentName }}
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: java
+                module: liberty
+            template:
+              metadata:
+                labels:
+                  app: java
+                  module: liberty
+              spec:
+                containers:
+                - image: {{ registry }}/{{ image}}:{{ version }}
+                  name: {{ image}}
+                  ports:
+                  - containerPort: {{ port }}
+          ---
+          apiVersion: v1
+          kind: Service
+          metadata:
+            labels:
+              app: java
+              module: liberty
+            name: {{ servicename }}
+          spec:
+            ports:
+            - port: {{ port }}
+              protocol: TCP
+              targetPort: {{ port }}
+            selector:
+              app: java
+              module: liberty
+          status:
+            loadBalancer: {}
+          EOF
+          else
+          kubectl create -f - <<EOF
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            labels:
+              app: java
+              module: liberty
+            name: {{ deploymentName }}
+          spec:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: java
+                module: liberty
+            template:
+              metadata:
+                labels:
+                  app: java
+                  module: liberty
+              spec:
+                containers:
+                - image: {{ registry }}/{{ image}}:{{ version }}
+                  name: {{ image}}
+                  ports:
+                  - containerPort: {{ port }}
+          ---
+          apiVersion: v1
+          kind: Service
+          metadata:
+            labels:
+              app: java
+              module: liberty
+            name: {{ servicename }}
+          spec:
+            ports:
+            - port: {{ port }}
+              protocol: TCP
+              targetPort: {{ port }}
+            selector:
+              app: java
+              module: liberty
+          status:
+            loadBalancer: {}
+          EOF
+          fi
+
+

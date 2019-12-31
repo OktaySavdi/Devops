@@ -1,0 +1,41 @@
+pipeline {
+   agent any
+   stages {
+        stage('Build') {
+         steps {
+            node('master') {
+            // Get some code from a GitHub repository
+            git 'https://github.com/OktaySavdi/java-example.git'
+            
+            sh '/opt/maven/apache-maven-3.6.3/bin/mvn clean package'
+
+            // Run Maven on a Unix agent.
+            sh "/opt/maven/apache-maven-3.6.3/bin/mvn -Dmaven.test.failure.ignore=true clean package"
+
+            // To run Maven on a Windows agent, use
+            // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+            }
+         }
+      }
+      stage('Deliver') {
+            steps {
+               node('master') {
+                sh 'scp webapp/target/webapp.war root@10.10.10.10:/opt/ansible'
+                sh 'scp Dockerfile root@10.10.10.10:/opt/ansible'
+                sh 'scp server.xml root@10.10.10.10:/opt/ansible'
+               }
+            }
+        }
+        stage('Deploy to K8S with Ansible') {
+            steps {
+               node('master') {
+                   script {
+                    sh '''
+                        /usr/bin/ansible-playbook /opt/devops/playbook.yaml -i /opt/devops/inventory.txt --extra-vars "version=$BUILD_NUMBER"
+                    '''
+                  }   
+             }
+            }
+        }
+    }
+}
