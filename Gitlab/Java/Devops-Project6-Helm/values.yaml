@@ -1,0 +1,36 @@
+# Default values for liberty-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: docker.registery.10.10.10.10.nip.io/websphere-liberty
+  tag: 104
+  pullPolicy: Always
+
+containers:
+  name: liberty-webapp
+  namespace: mynamespaces
+
+labels:
+  app: "java"
+  module: "liberty"
+
+service:
+  type: ClusterIP
+  port: 9080
+  name: liberty-webapp-service
+
+ingress:
+  path: /
+  host: helm-10.10.10.10.nip.io
+  annotations:
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  labels: {}
+  tls:
+    # Secrets must be manually created in the namespace.
+    # - secretName: chart-example-tls
+    #   hosts:
+    #     - chart-example.local
