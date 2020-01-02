@@ -15,7 +15,7 @@ Setup
  1. [[Install-Github-Runner.md](https://github.com/OktaySavdi/Devops/blob/master/Gitlab/Java/DevOps-Project5-Gitlab/Install-Github-Runner.md)]
  2. 
     [[Install-maven.md](https://github.com/OktaySavdi/Devops/blob/master/Gitlab/Java/DevOps-Project5-Gitlab/Install-maven.md)]
-3. [[Install docker Registry](https://github.com/OktaySavdi/Simple-DevOps-Project1-Java-Jenkins)]
+3. [[Install docker Registry](https://github.com/OktaySavdi/Devops/tree/master/Gitlab/Java/DevOps-Project5-Gitlab)]
 4. [[gitlab-ci.yml](.gitlab-ci.yml)]
 
 # Create helm Chart
