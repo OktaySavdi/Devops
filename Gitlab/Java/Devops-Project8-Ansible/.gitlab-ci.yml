@@ -1,0 +1,29 @@
+stages:
+  - build_deliver
+  - deploy_to_k8s
+ 
+variables:
+  image: "websphere-liberty"
+  deploymentName: "liberty-webapp"
+  servicename: "$deploymentName-service"
+  registry: "docker.registery.10.10.10.10.nip.io"
+  port: "9080"
+  namespace: "mynamespaces"
+
+build_deliver:
+    stage: build_deliver
+    script: 
+      - /opt/maven/apache-maven-3.6.3/bin/mvn clean package
+      - /opt/maven/apache-maven-3.6.3/bin/mvn -Dmaven.test.failure.ignore=true clean package
+      - scp -r webapp/target/webapp.war root@10.10.10.11:/opt/ansible/
+      - scp -r Dockerfile root@10.10.10.11:/opt/ansible/
+      - scp -r server.xml root@10.10.10.11:/opt/ansible/
+    tags:
+      - docker
+
+deploy_to_k8s:
+  stage: deploy_to_k8s
+  script:
+    - ansible-playbook playbook/playbook.yaml -i playbook/inventory.txt --extra-vars "version=$CI_PIPELINE_ID"
+  tags:
+      - docker
