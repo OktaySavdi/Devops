@@ -1,0 +1,44 @@
+stages:
+  - deliver
+  - build_image
+  - remove_image
+  - deploy_to_k8s
+ 
+variables:
+  image: "websphere-liberty"
+  deploymentName: "liberty-webapp"
+  servicename: "$deploymentName-service"
+  registry: "docker.registery.10.10.10.10.nip.io"
+  port: "9080"
+  namespace: "mynamespaces"
+
+deliver:
+    stage: deliver
+    script: 
+      - scp -r * root@10.10.10.11:/opt/app/
+    tags:
+      - docker
+
+build_image:
+  stage: build_image
+  script:
+    - ssh root@10.10.10.11 "docker build /opt/app/. -t $registry/$image:$CI_PIPELINE_ID"
+    - ssh root@10.10.10.11 "docker push $registry/$image:$CI_PIPELINE_ID"
+  tags:
+      - docker
+      
+remove_image:
+  stage: remove_image
+  script:
+    #- ssh root@10.10.10.11 "docker rmi $(docker images --filter "dangling=true" -q --no-trunc)"
+    - ssh root@10.10.10.11 "docker rmi -f $registry/$image:$CI_PIPELINE_ID"
+  tags:
+      - docker
+
+deploy_to_k8s:
+  stage: deploy_to_k8s
+  script:
+    - ssh root@10.10.10.11 "chmod +x /opt/app/script.sh"
+    - ssh root@10.10.10.11 "/opt/app/script.sh $namespace $deploymentName $servicename $registry $image $CI_PIPELINE_ID $port"
+  tags:
+      - docker
