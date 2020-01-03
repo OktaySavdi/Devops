@@ -43,8 +43,7 @@ pipeline {
                    script {
                             withDockerRegistry([credentialsId: 'docker-private-host', url: "https://${registry}/"]) {
                             sh '''
-                             docker build /opt/app/. -t ${image}:$BUILD_NUMBER
-                             docker tag ${image}:$BUILD_NUMBER ${registry}/${image}:$BUILD_NUMBER
+                             docker build /opt/app/. -t ${registry}/${image}:$BUILD_NUMBER
                              docker push ${registry}/${image}:$BUILD_NUMBER
                             '''
                             }
@@ -59,7 +58,6 @@ pipeline {
                    script {
                             withDockerRegistry([credentialsId: 'docker-private-host', url: "https://${registry}/"]) {
                             sh '''
-                             docker rmi -f ${image}:$BUILD_NUMBER
                              docker rmi -f ${registry}/${image}:$BUILD_NUMBER
                             '''
                             }
