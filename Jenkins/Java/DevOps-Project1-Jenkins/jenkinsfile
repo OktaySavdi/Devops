@@ -57,7 +57,6 @@ pipeline {
                    script {
                             withDockerRegistry([credentialsId: 'docker-private-host', url: "https://${registry}/"]) {
                             sh '''
-                             docker rmi -f ${image}:$BUILD_NUMBER
                              docker rmi -f ${registry}/${image}:$BUILD_NUMBER
                             '''
                             }
