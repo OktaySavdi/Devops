@@ -1,7 +1,12 @@
 
 ![Simple-DevOps-Project2-Java-Helm](https://user-images.githubusercontent.com/3519706/71467177-0beebf00-27d3-11ea-806e-b879f3e652d9.png)
 
-Produced with the 2nd most primitive method of CI / CD processes
+#### []((https://github.com/OktaySavdi/Devops/edit/master/Jenkins/Java/DevOps-Project2-Helm)#Overview)Overview
+
+On Jenkşns, we will learn how to develop CI / CD processes in an automated manner with a pipeline mechanism.
+
+We will create the pipeline for a Java application. The pipeline will first build the binary, 
+create a docker image from it, push the image to Docker repo, then deploy it on the Kubernetes cluster using its helm chart.
 
 Requirements
 
