@@ -1,6 +1,11 @@
 ![https://github.com/OktaySavdi/Devops/tree/master/Gitlab/Java/Devops-Project6-Helm](https://user-images.githubusercontent.com/3519706/71672577-741b4300-2d87-11ea-9cbb-c2c12979bacd.png)
 
-Made with the most primitive method of CI / CD processes
+#### []((https://github.com/OktaySavdi/Devops/edit/master/Gitlab/Java/Devops-Project6-Helm)#Overview)Overview
+
+On Gitlab, we will learn how to develop CI / CD processes in an automated manner with a pipeline mechanism.
+
+We will create the pipeline for a Java application. The pipeline will first build the binary, 
+create a docker image from it, push the image to Docker repo, then deploy it on the Kubernetes cluster using its helm chart.
 
 Requirements
 
