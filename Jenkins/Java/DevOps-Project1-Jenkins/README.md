@@ -1,6 +1,11 @@
 ![https://github.com/OktaySavdi/Simple-DevOps-Project1-Java-Jenkins](https://user-images.githubusercontent.com/3519706/71445545-b9a69300-272b-11ea-9869-b229947b1308.png)
 
-Made with the most primitive method of CI / CD processes
+#### []((https://github.com/OktaySavdi/Devops/blob/master/Jenkins/Java/DevOps-Project1-Jenkins)#Overview)Overview
+
+On Jenkins, we will learn how to develop CI / CD processes in an automated manner with a pipeline mechanism.
+
+This guide shows you how to set up a CI/CD pipeline between Jenkins and a Kubernetes cluster with Jenkins's Auto DevOps feature. With this configuration, 
+every change to application code is automatically built as a Docker container and deployed to the Kubernetes cluster for review and test.
 
 Requirements
 
