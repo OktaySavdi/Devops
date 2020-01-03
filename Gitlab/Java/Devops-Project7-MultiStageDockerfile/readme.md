@@ -1,6 +1,11 @@
 ![https://github.com/OktaySavdi/Devops/tree/master/Gitlab/Java/Devops-Project7-MultiStageDockerfile](https://user-images.githubusercontent.com/3519706/71672825-20f5c000-2d88-11ea-8436-008f50b701b9.png)
 
-Produced with the 2nd most primitive method of CI / CD processes
+#### []((https://github.com/OktaySavdi/Devops/edit/master/Gitlab/Java/Devops-Project7-MultiStageDockerfile)#Overview)Overview
+
+On Gitlab, we will learn how to develop CI / CD processes in an automated manner with a pipeline mechanism.
+
+We will create the pipeline for a Java application. The pipeline will first build the binary, 
+create a docker image with MultistageDockerfile, push the image to docker repo, then deploy it on the Kubernetes.
 
 Requirements
 
