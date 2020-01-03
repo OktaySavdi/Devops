@@ -42,3 +42,5 @@ helm install liberty-app --dry-run --debug ./ --set image.repository=docker.regi
 ![https://github.com/OktaySavdi/Devops/tree/master/Gitlab/Java/Devops-Project6-Helm](https://user-images.githubusercontent.com/3519706/71672472-1a1a7d80-2d87-11ea-8445-7ba25a68ad08.png)
 
     http://myapplication-10.10.10.10.nip.io/webapp/
+    
+ ![https://github.com/OktaySavdi/Devops/tree/master/Gitlab/Java/Devops-Project6-Helm](https://user-images.githubusercontent.com/3519706/71712081-c8203900-2e14-11ea-926c-02f963074e92.png)
