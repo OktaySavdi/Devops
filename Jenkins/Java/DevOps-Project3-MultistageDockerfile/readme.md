@@ -1,7 +1,12 @@
 
 ![https://github.com/OktaySavdi/Simple-DevOps-Project3-Java-MultistageDockerfile](https://user-images.githubusercontent.com/3519706/71479930-a9fc7c80-2807-11ea-84d0-c46866f62b03.png)
 
-Produced with the 3nd most primitive method of CI / CD processes
+#### []((https://github.com/OktaySavdi/Devops/edit/master/Jenkins/Java/DevOps-Project3-MultistageDockerfile)#Overview)Overview
+
+On Jenkins, we will learn how to develop CI / CD processes in an automated manner with a pipeline mechanism.
+
+We will create the pipeline for a Java application. The pipeline will first build the binary, 
+create a docker image with MultistageDockerfile, push the image to docker repo, then deploy it on the Kubernetes.
 
 Requirements
 
