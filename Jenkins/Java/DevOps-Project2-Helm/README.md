@@ -3,7 +3,7 @@
 
 #### []((https://github.com/OktaySavdi/Devops/edit/master/Jenkins/Java/DevOps-Project2-Helm)#Overview)Overview
 
-On Jenkşns, we will learn how to develop CI / CD processes in an automated manner with a pipeline mechanism.
+On Jenkins, we will learn how to develop CI / CD processes in an automated manner with a pipeline mechanism.
 
 We will create the pipeline for a Java application. The pipeline will first build the binary, 
 create a docker image from it, push the image to Docker repo, then deploy it on the Kubernetes cluster using its helm chart.
