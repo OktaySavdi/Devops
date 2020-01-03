@@ -1,0 +1,48 @@
+stages:
+  - build_deliver
+  - build_image
+  - remove_image
+  - deploy_to_k8s
+ 
+variables:
+  image: "websphere-liberty"
+  deploymentName: "liberty-webapp"
+  servicename: "$deploymentName-service"
+  registry: "docker.registery.10.10.10.10.nip.io"
+  port: "9080"
+  namespace: "mynamespaces"
+
+build_deliver:
+    stage: build_deliver
+    script: 
+      - /opt/maven/apache-maven-3.6.3/bin/mvn clean package
+      - /opt/maven/apache-maven-3.6.3/bin/mvn -Dmaven.test.failure.ignore=true clean package
+      - scp webapp/target/webapp.war root@10.10.10.11:/opt/app/
+      - scp Dockerfile root@10.10.10.11:/opt/app/
+      - scp server.xml root@10.10.10.11:/opt/app/
+    tags:
+      - docker
+
+build_image:
+  stage: build_image
+  script:
+    - ssh root@10.10.10.11 "docker build /opt/app/. -t $image:$CI_PIPELINE_ID"
+    - ssh root@10.10.10.11 "docker tag $image:$CI_PIPELINE_ID $registry/$image:$CI_PIPELINE_ID"
+    - ssh root@10.10.10.11 "docker push $registry/$image:$CI_PIPELINE_ID"
+  tags:
+      - docker
+      
+remove_image:
+  stage: remove_image
+  script:
+    - ssh root@10.10.10.11 "docker rmi -f $image:$CI_PIPELINE_ID"
+    - ssh root@10.10.10.11 "docker rmi -f $registry/$image:$CI_PIPELINE_ID"
+  tags:
+      - docker
+
+deploy_to_k8s:
+  stage: deploy_to_k8s
+  script:
+    - ssh -n root@10.10.10.11 "kubectl run $deploymentName --image=$registry/$image:$CI_PIPELINE_ID --labels="app=java,module=liberty" --port=$port -n $namespace --dry-run -o yaml | kubectl apply -f -"
+  tags:
+      - docker
