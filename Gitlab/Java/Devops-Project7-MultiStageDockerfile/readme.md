@@ -41,3 +41,5 @@ Setup
 ```
 http://myapplication-10.10.10.10.nip.io/webapp/
 ```
+
+![https://github.com/OktaySavdi/Devops/tree/master/Gitlab/Java/Devops-Project7-MultiStageDockerfile](https://user-images.githubusercontent.com/3519706/71712174-1b928700-2e15-11ea-933b-04f881965856.png)
