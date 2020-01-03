@@ -1,7 +1,12 @@
 ![https://github.com/OktaySavdi/Devops/tree/master/Gitlab/Java/DevOps-Project8-Ansible](https://user-images.githubusercontent.com/3519706/71669085-93f93980-2d7c-11ea-969f-5164b684f2d1.png)
 
 
-Produced with the 4nd most primitive method of CI / CD processes
+#### []((https://github.com/OktaySavdi/Devops/edit/master/Gitlab/Java/Devops-Project8-Ansible)#Overview)Overview
+
+On Gitlab, we will learn how to develop CI / CD processes in an automated manner with a pipeline mechanism.
+
+We will create the pipeline for a Java application. The pipeline will first build the binary, 
+create a docker image from it, push the image to Docker repo, then deploy it on the Kubernetes cluster using its Ansible.
 
 Requirements
 
