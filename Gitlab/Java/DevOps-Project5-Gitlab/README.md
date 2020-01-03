@@ -1,7 +1,7 @@
 
 ![https://github.com/OktaySavdi/Simple-DevOps-Project5-Java-Gitlab](https://user-images.githubusercontent.com/3519706/71611615-5c876300-2bab-11ea-8fa7-5569b9acf778.png)
 
-#### []((https://github.com/OktaySavdi/Devops/blob/master/Jenkins/Java/DevOps-Project1-Jenkins)#Overview)Overview
+#### []((https://github.com/OktaySavdi/Devops/edit/master/Gitlab/Java/DevOps-Project5-Gitlab)#Overview)Overview
 
 On Gitlab, we will learn how to develop CI / CD processes in an automated manner with a pipeline mechanism.
 
