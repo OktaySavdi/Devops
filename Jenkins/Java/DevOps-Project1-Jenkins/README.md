@@ -99,7 +99,7 @@ Setup
 
 #docker
 
-    chmod 777 /var/run/docker.sock (we do not recommend this we researching an another options)
+    chmod 777 /var/run/docker.sock (we do not recommend this we researching an another options(buildah or podman))
  
 #Kubernetes
 
