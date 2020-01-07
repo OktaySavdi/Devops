@@ -35,6 +35,10 @@ Setup
     COPY --from=jdk /build/server.xml /config/
     ENV LICENSE accept
 ```
+You can check image on registry
+
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/_catalog
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/websphere-liberty/tags/list
 
 ![https://github.com/OktaySavdi/Devops/tree/master/Gitlab/Java/Devops-Project7-MultiStageDockerfile](https://user-images.githubusercontent.com/3519706/71672940-5b5f5d00-2d88-11ea-8670-879ce9a4d2a4.png)
 
