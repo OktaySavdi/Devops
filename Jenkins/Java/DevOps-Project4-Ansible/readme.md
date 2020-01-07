@@ -39,6 +39,11 @@ Setup
     
     ansible-playbook /opt/devops/playbook.yaml -i /opt/devops/inventory.txt --extra-vars "version=$BUILD_NUMBER"
 
+You can check image on registry
+
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/_catalog
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/websphere-liberty/tags/list
+
  ![https://github.com/OktaySavdi/Simple-DevOps-Project4-Java-Ansible](https://user-images.githubusercontent.com/3519706/71554009-60d84280-2a2a-11ea-89f6-f0aff272e58d.png)
 
 
