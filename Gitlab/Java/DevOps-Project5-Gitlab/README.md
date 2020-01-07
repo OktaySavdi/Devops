@@ -49,7 +49,7 @@ vi /home/**gitlab-runner**/.bashrc
 
 4.[gitlab-ci.yml](.gitlab-ci.yml)
 
-You can image on registry
+You can check image on registry
 
     curl -k https://docker.registery.10.10.10.10.nip.io/v2/_catalog
     curl -k https://docker.registery.10.10.10.10.nip.io/v2/websphere-liberty/tags/list
