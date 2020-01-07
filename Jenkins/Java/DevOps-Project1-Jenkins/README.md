@@ -110,6 +110,11 @@ Setup
 
 3.[jenkinsfile](jenkinsfile)
 
+You can check image on registry
+
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/_catalog
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/websphere-liberty/tags/list
+
 ![https://github.com/OktaySavdi/Simple-DevOps-Project1-Java-Jenkins](https://user-images.githubusercontent.com/3519706/71444062-f7052380-271f-11ea-90b5-b45ccd633f58.png)
 
     http://myapplication-10.10.10.10.nip.io/webapp/
