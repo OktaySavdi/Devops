@@ -36,7 +36,10 @@ Setup
         ENV LICENSE accept
 
 
+You can check image on registry
 
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/_catalog
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/websphere-liberty/tags/list
  
  ![(https://github.com/OktaySavdi/Simple-DevOps-Project3-Java-MultistageDockerfile)](https://user-images.githubusercontent.com/3519706/71479834-38243300-2807-11ea-8cfa-7079bd1014e8.png)
 
