@@ -36,6 +36,11 @@ Delete all yaml files under the template folder and move templates folder under 
 
     helm install liberty-app --dry-run --debug ./ --set image.repository=docker.registery.10.10.10.10.nip.io/websphere-liberty --set image.tag=1
  
+ You can check image on registry
+
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/_catalog
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/websphere-liberty/tags/list
+    
  ![Simple-DevOps-Project2-Java-Helm](https://user-images.githubusercontent.com/3519706/71468569-7f92cb00-27d7-11ea-8972-e4f37c86cbb0.png)
 
 
