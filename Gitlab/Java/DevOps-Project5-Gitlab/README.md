@@ -49,6 +49,11 @@ vi /home/**gitlab-runner**/.bashrc
 
 4.[gitlab-ci.yml](.gitlab-ci.yml)
 
+You can image on registry
+
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/_catalog
+    curl -k https://docker.registery.10.10.10.10.nip.io/v2/websphere-liberty/tags/list
+
 ![https://github.com/OktaySavdi/Simple-DevOps-Project5-Java-Gitlab](https://user-images.githubusercontent.com/3519706/71611416-a53e1c80-2ba9-11ea-98d2-305131d5758a.png)
 
     http://myapplication-10.10.10.10.nip.io/webapp/
