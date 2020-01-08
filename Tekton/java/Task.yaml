@@ -1,0 +1,30 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: build-task
+spec:
+  inputs: 
+    resources:
+      - name: source-code
+        type: git
+    params:
+      - name: imageRegistry
+        type: string
+        default: "docker.registery.10.10.10.10.nip.io"
+      - name: imageName
+        type: string
+  steps:
+    - name: build-package
+      image: gcr.io/cloud-builders/mvn
+      command:
+        - /usr/bin/mvn
+      args:
+      - "package"
+      workingDir: /workspace/source-code
+    - name: build-image
+      image: gcr.io/kaniko-project/executor:v0.15.0
+      args:
+        - --dockerfile=Dockerfile
+        - --context=dir:///workspace/source-code
+        - --destination=$(inputs.params.imageRegistry)/$(inputs.params.imageName)
+        - --skip-tls-verify

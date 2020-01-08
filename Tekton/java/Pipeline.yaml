@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Pipeline
+metadata:
+  name: maven-java-pipeline
+spec:
+  resources:
+    - name: source-code
+      type: git
+  tasks:
+    - name: build
+      taskRef:
+        name: build-task
+      params:
+      - name: imageName
+        value: "websphere-liberty"
+      resources:
+        inputs:
+          - name: source-code
+            resource: source-code

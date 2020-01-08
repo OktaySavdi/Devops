@@ -1,0 +1,11 @@
+apiVersion: tekton.dev/v1alpha1
+kind: PipelineRun
+metadata:
+  name: maven-java-pipelinerun
+spec:
+  pipelineRef:
+    name: maven-java-pipeline
+  resources:
+  - name: source-code
+    resourceRef:
+      name: maven-java-resource
