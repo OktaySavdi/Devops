@@ -34,3 +34,7 @@ On Gitlab, develop CI / CD processes in an automated manner with a pipeline mech
 On Gitlab, develop CI / CD processes in an automated manner with a pipeline mechanism on the Kubernetes cluster using its Ansible
 
 ![https://github.com/OktaySavdi/Devops/tree/master/Gitlab/Java/DevOps-Project8-Ansible](https://user-images.githubusercontent.com/3519706/71669085-93f93980-2d7c-11ea-969f-5164b684f2d1.png)
+
+On Tekton, develop CI / CD processes in an automated manner with a pipeline mechanism on the Kubernetes cluster
+
+![https://github.com/OktaySavdi/Devops/tree/master/Tekton/java](https://user-images.githubusercontent.com/3519706/71954112-486be300-31f5-11ea-944e-01285a6d1a9e.png)
