@@ -1,5 +1,10 @@
 ![https://github.com/OktaySavdi/Devops/tree/master/Tekton/java](https://user-images.githubusercontent.com/3519706/71954112-486be300-31f5-11ea-944e-01285a6d1a9e.png)
 
+Overview
+On Tekton, we will learn how to develop CI / CD processes in an automated manner with a pipeline mechanism.
+
+We will create the pipeline for a Java application. The pipeline will first build the binary, create a docker image from it, push the image to Docker repo, then deploy it on the Kubernetes cluster using its Tekton.
+
 ## Installing Tekton Pipelines
 To add the Tekton Pipelines component to an existing cluster:
 1.  Run the  [`kubectl apply`](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply)  command to install  [Tekton Pipelines](https://github.com/tektoncd/pipeline)  and its dependencies:
