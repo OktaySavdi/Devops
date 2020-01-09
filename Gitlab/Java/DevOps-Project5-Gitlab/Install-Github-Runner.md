@@ -1,11 +1,11 @@
 # [](https://github.com/OktaySavdi/Simple-DevOps-Project5-Java-Gitlab)Install Github
+[Install Github Example](https://www.vultr.com/docs/how-to-install-gitlab-community-edition-ce-11-x-on-centos-7)
 
     wget https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/7/gitlab-ce-12.6.1-ce.0.el7.x86_64.rpm
     yum localinstall gitlab-ce-12.6.1-ce.0.el7.x86_64.rpm -y
     vi /etc/gitlab/gitlab.rb
     external_url 'https://gitlab.example.com'
     gitlab-ctl reconfigure
-    [Install Github Example](https://www.vultr.com/docs/how-to-install-gitlab-community-edition-ce-11-x-on-centos-7)
 
 # [](https://github.com/OktaySavdi/Simple-DevOps-Project5-Java-Gitlab)Install Runner
 
