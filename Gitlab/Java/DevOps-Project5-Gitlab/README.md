@@ -16,7 +16,7 @@ Requirements
 
 Setup
 
- 1. [Install-Github-Runner.md](Install-Github-Runner.md)
+ 1. [Install Github/Github-Runner.md](Install-Github-Runner.md)
  2. 
     [Install-maven.md](Install-maven.md)
  3. 
