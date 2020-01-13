@@ -1,4 +1,4 @@
-# Install & configure Maven build tool on Jenkins
+# Install & configure Maven build tool
 
 Maven is a code build tool which used to convert your code to an artifact. this is a widely used plugin to build in continuous integration
 
