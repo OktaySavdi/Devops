@@ -16,7 +16,7 @@ Maven is a code build tool which used to convert your code to an artifact. this 
 
     mkdir /opt/maven
     cd /opt/maven
-    #downloading maven version 3.6.0
+    #downloading maven version 3.6.3
     wget http://mirrors.estointernet.in/apache/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
     tar -xvzf apache-maven-3.6.3-bin.tar.gz
         
@@ -26,7 +26,7 @@ Maven is a code build tool which used to convert your code to an artifact. this 
 `
 
     vi ~/.bash_profile
-    M2_HOME=/opt/maven/apache-maven-3.6.1
+    M2_HOME=/opt/maven/apache-maven-3.6.3
     M2=$M2_HOME/bin
     PAHT=<Existing_PATH>:$M2_HOME:$M2
     source .bashrc
