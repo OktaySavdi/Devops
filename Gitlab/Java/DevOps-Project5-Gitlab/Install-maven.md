@@ -30,6 +30,6 @@ In this case, I am using /opt/maven as my installation directory
 
 #### [](https://github.com/OktaySavdi/Project1#checkpoint)Checkpoint
 
-1.  logoff and login to check maven version
+logoff and login to check maven version
     
     mvn --version
