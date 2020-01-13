@@ -17,14 +17,14 @@ Requirements
 
 Setup
 
- 1. [Install-Jenkins.md](Install-Jenkins.md)
+ 1. [Install-Jenkins.md](https://github.com/OktaySavdi/Devops/blob/master/Jenkins/Java/DevOps-Project1-Jenkins/Install-Jenkins.md)
  2. 
-    [install-maven.md](install-maven.md)
+    [install-maven.md](https://github.com/OktaySavdi/Devops/blob/master/Jenkins/Java/DevOps-Project1-Jenkins/install-maven.md)
 
 3. 
     [Install docker Registry](https://github.com/OktaySavdi/Simple-DevOps-Project1-Java-Jenkins)
 
-4. [jenkinsfile](jenkinsfile)
+4. [jenkinsfile](https://github.com/OktaySavdi/Devops/tree/master/Jenkins/Java/DevOps-Project1-Jenkins)
 5. [playbook](playbook)
 
 # Install Docker module for Ansible on Docker Server
