@@ -4,7 +4,8 @@ Maven is a code build tool which used to convert your code to an artifact. this 
 
 #### [](https://github.com/OktaySavdi/Project1#install-maven-on-jenkins)Install Maven
 
-1.  Download maven packages  [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)  onto Jenkins server. In this case, I am using /opt/maven as my installation directory
+1.  Download maven packages  [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)
+In this case, I am using /opt/maven as my installation directory
 
 -   Link :  [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)
     
@@ -31,8 +32,4 @@ Maven is a code build tool which used to convert your code to an artifact. this 
 
 1.  logoff and login to check maven version
     
-    mvn --version    
-
-So far we have completed the installation of maven software to support maven plugin on the jenkins console. Let's jump onto Jenkins to complete the remaining steps.
-
-       add jenkins slave agent on kubernetes machine
+    mvn --version
