@@ -2,11 +2,7 @@
 
 Maven is a code build tool which used to convert your code to an artifact. this is a widely used plugin to build in continuous integration
 
-#### [](https://github.com/OktaySavdi/Project1#prerequisites)Prerequisites
-
-1.  Jenkins server
-
-#### [](https://github.com/OktaySavdi/Project1#install-maven-on-jenkins)Install Maven on Jenkins
+#### [](https://github.com/OktaySavdi/Project1#install-maven-on-jenkins)Install Maven
 
 1.  Download maven packages  [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)  onto Jenkins server. In this case, I am using /opt/maven as my installation directory
 
