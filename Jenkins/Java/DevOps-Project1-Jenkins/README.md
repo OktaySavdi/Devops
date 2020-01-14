@@ -99,8 +99,10 @@ Setup
 
 #docker
 
-    chmod 777 /var/run/docker.sock (we do not recommend this we researching an another options(buildah or podman))
- 
+    chmod 777 /var/run/docker.sock
+
+we do not recommend this method we suggest an another options([buildah](https://github.com/OktaySavdi/Devops/blob/master/Buildah/Java/readme.md) or podman)
+
 #Kubernetes
 
     cp -rf /root/.kube/ /var/lib/jenkins/
