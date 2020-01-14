@@ -32,7 +32,6 @@ Setup
  4. [Install-Buildah.md](Buildah.md)
  5. 
     [Install docker Registry](https://github.com/OktaySavdi/Devops/tree/master/Jenkins/Java/DevOps-Project1-Jenkins)
- 6. [Gitlab-ci.yml](.gitlab-ci.yml)
 
 #### [](https://github.com/OktaySavdi/Devops/tree/master/Buildah/Java#permission)Give permisson for Gitlab
 
@@ -63,7 +62,7 @@ vi /home/**gitlab-runner**/.bashrc
 
     update-ca-trust extract
 
-7.[gitlab-ci.yml](.gitlab-ci.yml)
+6.[gitlab-ci.yml](.gitlab-ci.yml)
 
 
 You can check image on registry
