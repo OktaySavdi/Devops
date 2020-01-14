@@ -38,3 +38,7 @@ On Gitlab, develop CI / CD processes in an automated manner with a pipeline mech
 On Tekton, develop CI / CD processes in an automated manner with a pipeline mechanism on the Kubernetes cluster
 
 ![https://github.com/OktaySavdi/Devops/tree/master/Tekton/java](https://user-images.githubusercontent.com/3519706/71954112-486be300-31f5-11ea-944e-01285a6d1a9e.png)
+
+The pipeline will first build the binary, create a docker image on Buildah, push the image to docker repo, then deploy it on the Kubernetes.
+
+![https://github.com/OktaySavdi/Devops/tree/master/Buildah/Java](https://user-images.githubusercontent.com/3519706/72339357-25e73780-36d7-11ea-873d-b39d66f64705.png)
