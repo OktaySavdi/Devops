@@ -1,0 +1,43 @@
+stages:
+  - build_code
+  - push_image
+  - deploy_to_k8s
+  - remove_buildah_image
+ 
+variables:
+  image: "websphere-liberty"
+  deploymentName: "liberty-webapp"
+  servicename: "$deploymentName-service"
+  registry: "docker.registery.10.10.10.10.nip.io"
+  port: "9080"
+  namespace: "myworkspaces"
+
+build_code:
+    stage: build_code
+    script: 
+      - /opt/maven/apache-maven-3.6.3/bin/mvn -Dmaven.test.failure.ignore=true clean package
+      - buildah bud -f Dockerfile -t "$registry/$image:$CI_PIPELINE_ID" .
+    tags:
+      - buildah
+
+push_image:
+    stage: push_image
+    script: 
+      - buildah push "$registry/$image:$CI_PIPELINE_ID"
+    tags:
+      - buildah
+
+deploy_to_k8s:
+  stage: deploy_to_k8s
+  script:
+    - ssh root@10.10.10.11 "chmod +x /opt/app/script.sh"
+    - ssh root@10.10.10.11 "/opt/app/script.sh $namespace $deploymentName $servicename $registry $image $CI_PIPELINE_ID $port"
+  tags:
+      - buildah
+      
+remove_buildah_image:
+  stage: remove_buildah_image
+  script:
+    - buildah rmi -f "$registry/$image:$CI_PIPELINE_ID"
+  tags:
+      - buildah
