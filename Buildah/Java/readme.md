@@ -10,7 +10,7 @@ We will create the pipeline for a Java application. The pipeline will first buil
 create a docker image on Buildah, push the image to docker repo, then deploy it on the Kubernetes.
 
 #### [](https://github.com/OktaySavdi/Devops/tree/master/Buildah/Java#Why_buildah?)Why buildah?
-Lots of people would like to build OCI/container images within a system like Kubernetes. Imagine you have a CI/CD system that is constantly building container images, a tool like Kubernetes would be useful for distributing the load of builds. Until recently, most people were leaking the Docker socket into the container and then allowing the containers to do docker build. As I pointed out years ago, this is one of the most dangerous things you can do.  Giving people root access on the system or sudo without requiring a password is more secure than allowing access to the Docker socket.
+Lots of people would like to build OCI/container images within a system like Kubernetes. Imagine you have a CI/CD system that is constantly building container images, a tool like Kubernetes would be useful for distributing the load of builds. Until recently, most people were leaking the Docker socket into the container and then allowing the containers to do docker build. As I pointed out years ago, this is one of the most dangerous things you can do.  
 
 Because of this, many people have been attempting to run Buildah within a container.  We have built an example of what we think is the best way to run Buildah inside of a container. 
 
