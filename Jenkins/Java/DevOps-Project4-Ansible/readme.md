@@ -24,7 +24,7 @@ Setup
 3. 
     [Install docker Registry](https://github.com/OktaySavdi/Devops/tree/master/Jenkins/Java/DevOps-Project1-Jenkins)
 
-4. [jenkinsfile](https://github.com/OktaySavdi/Devops/tree/master/Jenkins/Java/DevOps-Project1-Jenkins)
+4. [jenkinsfile](jenkinsfile)
 5. [playbook](playbook)
 
 # Install Docker module for Ansible on Docker Server
