@@ -7,8 +7,6 @@ pipeline {
             // Get some code from a GitHub repository
             git 'https://github.com/OktaySavdi/java-example.git'
             
-            sh '/opt/maven/apache-maven-3.6.3/bin/mvn clean package'
-
             // Run Maven on a Unix agent.
             sh "/opt/maven/apache-maven-3.6.3/bin/mvn -Dmaven.test.failure.ignore=true clean package"
 
