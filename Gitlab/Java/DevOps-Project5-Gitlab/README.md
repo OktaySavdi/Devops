@@ -20,7 +20,7 @@ Setup
  2. 
     [Install-maven.md](Install-maven.md)
  3. 
-    [Install docker Registry](https://github.com/OktaySavdi/Simple-DevOps-Project1-Java-Jenkins)
+    [Install docker Registry](https://github.com/OktaySavdi/Devops/tree/master/Jenkins/Java/DevOps-Project1-Jenkins)
 
     
 #### [](https://github.com/OktaySavdi/Simple-DevOps-Project5-Java-Gitlab#permission)Give permisson for Gitlab
