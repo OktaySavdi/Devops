@@ -11,52 +11,53 @@
 ## [](https://github.com/OktaySavdi/Project1#Install-Java)Install Java
 
 1.  We will be using open java for our demo, Get the latest version from  [http://openjdk.java.net/install/](http://openjdk.java.net/install/)
-    
-    yum install java-1.8*
-    #yum -y install java-1.8.0-openjdk
-    
+```
+yum install java-1.8*
+#yum -y install java-1.8.0-openjdk
+```
 2.  Confirm Java Version and set the java home
+```	
+java -version
 	
-	java -version
-	
-	find /usr/lib/jvm/java-1.8* | head -n 3
+find /usr/lib/jvm/java-1.8* | head -n 3
     
-	JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64
 	
-	export JAVA_HOME
+export JAVA_HOME
 	
-	PATH=$PATH:$JAVA_HOME
-
+PATH=$PATH:$JAVA_HOME
+```
 **#To set it permanently update your .bashrc**
+```    
+vi ~/.bashrc
     
-    vi ~/.bashrc
-    
-    source .bashrc 
-    
+source .bashrc 
+```    
 _The output should be something like this,_
 
 **[root@~]# java -version**
-
+```
 openjdk version "1.8.0_181"
 
 OpenJDK Runtime Environment (build 1.8.0_181-b13)
 
 OpenJDK 64-Bit Server VM (build 25.181-b13, mixed mode)
-    
+```    
 
 ## [](https://github.com/OktaySavdi/Project1#Install-jenkins)Install Jenkins
 
 You can install jenkins using the rpm or by setting up the repo. We will set up the repo so that we can update it easily in the future.
 
 1.  Get the latest version of jenkins from  [https://pkg.jenkins.io/redhat-stable/](https://pkg.jenkins.io/redhat-stable/)  and install
+```    
+yum -y install wget
     
-    yum -y install wget
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
     
-    sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
     
-    sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-    
-    yum -y install jenkins
+yum -y install jenkins
+```
     
 ### Start Jenkins
 
