@@ -47,6 +47,10 @@ Setup
  
  or
  
+#### [](https://github.com/OktaySavdi/Simple-DevOps-Project1-Java-Jenkins#Create-certificate-for-https)Create certificate for https
+ openssl req -newkey rsa:4096 -nodes -sha256 -keyout domain.key -x509 -days 365 -out domain.crt
+ 
+ #### [](https://github.com/OktaySavdi/Simple-DevOps-Project1-Java-Jenkins#Install-docker-registery-with-helm)Install registery with podman
  ```
  podman run --name mirror-registry -p 5000:5000 \ 
      -v /opt/registry/data:/var/lib/registry:z \
