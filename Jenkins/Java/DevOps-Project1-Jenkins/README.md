@@ -45,6 +45,21 @@ Setup
     --set persistence.size=10Gi \
     --set persistence.storageClass=rook-ceph-block
  
+ or
+ 
+ ```
+ podman run --name mirror-registry -p 5000:5000 \ 
+     -v /opt/registry/data:/var/lib/registry:z \
+     -v /opt/registry/auth:/auth:z \
+     -e "REGISTRY_AUTH=htpasswd" \
+     -e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
+     -e REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd \
+     -v /opt/registry/certs:/certs:z \
+     -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/registry.crt \
+     -e REGISTRY_HTTP_TLS_KEY=/certs/registry.key \
+     -d docker.io/library/registry:2
+ ```
+ 
 #### [](https://github.com/OktaySavdi/Simple-DevOps-Project1-Java-Jenkins#expose-docker-registery)Docker-Registry is Expose to the outside as https
 
     apiVersion: extensions/v1beta1
